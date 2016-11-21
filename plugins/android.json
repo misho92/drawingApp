@@ -8,7 +8,10 @@
     },
     "installed_plugins": {
         "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "io.cordova.hellocordova"
+            "PACKAGE_NAME": "lu.uni.hello"
+        },
+        "com.darktalker.cordova.screenshot": {
+            "PACKAGE_NAME": "lu.uni.hello"
         }
     },
     "dependent_plugins": {}
