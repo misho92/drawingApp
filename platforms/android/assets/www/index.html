@@ -169,6 +169,10 @@ $(document).ready(function () {
 		starCanvas();
 	});
 
+	$("#house").click(function() {
+		houseCanvas();
+	});
+
 	//screenshot
 	$("#generate").click(function() {
 		navigator.screenshot.save(function(error,res){
@@ -320,6 +324,44 @@ $('.rotate2').click(function() {
 counter++;
 }
 
+//add house
+function houseCanvas(){
+    var canvas = '<div class="rotate3"><svg id="' + counter + '" width="100" height="100"><line x1="25" y1="0" x2="0" y2="50" style="stroke:rgb(0,0,0);stroke-width:2"/><line x1="25" y1="0" x2="50" y2="50" style="stroke:rgb(0,0,0);stroke-width:2"/><line x1="0" y1="50" x2="50" y2="50" style="stroke:rgb(0,0,0);stroke-width:2"/><line x1="0" y1="50" x2="0" y2="100" style="stroke:rgb(0,0,0);stroke-width:2"/><line x1="0" y1="100" x2="50" y2="100" style="stroke:rgb(0,0,0);stroke-width:2"/><line x1="50" y1="100" x2="50" y2="50" style="stroke:rgb(0,0,0);stroke-width:2"/><line x1="20" y1="100" x2="20" y2="80" style="stroke:rgb(0,0,0);stroke-width:2"/><line x1="20" y1="80" x2="30" y2="80" style="stroke:rgb(0,0,0);stroke-width:2"/><line x1="30" y1="100" x2="30" y2="80" style="stroke:rgb(0,0,0);stroke-width:2"/><line x1="10" y1="60" x2="10" y2="70" style="stroke:rgb(0,0,0);stroke-width:2"/><line x1="10" y1="70" x2="20" y2="70" style="stroke:rgb(0,0,0);stroke-width:2"/><line x1="20" y1="70" x2="20" y2="60" style="stroke:rgb(0,0,0);stroke-width:2"/><line x1="10" y1="60" x2="20" y2="60" style="stroke:rgb(0,0,0);stroke-width:2"/><line x1="30" y1="60" x2="30" y2="70" style="stroke:rgb(0,0,0);stroke-width:2"/><line x1="30" y1="70" x2="40" y2="70" style="stroke:rgb(0,0,0);stroke-width:2"/><line x1="40" y1="70" x2="40" y2="60" style="stroke:rgb(0,0,0);stroke-width:2"/><line x1="40" y1="60" x2="30" y2="60" style="stroke:rgb(0,0,0);stroke-width:2"/></svg></div>';
+	$("#content").append(canvas);
+	switch(counter) {
+		case 1:
+			$( "#1" ).draggable();
+			break;
+		case 2:
+			$( "#2" ).draggable();
+			break;
+		case 3:
+			$( "#3" ).draggable();
+			break;
+		case 4:
+			$( "#4" ).draggable();
+			break;
+		case 5:
+			$( "#5" ).draggable();
+			break;
+	}
+	//rotation
+var rotation = 0;
+
+jQuery.fn.rotate = function(degrees) {
+    $(this).css({'-webkit-transform' : 'rotate('+ degrees +'deg)',
+                 '-moz-transform' : 'rotate('+ degrees +'deg)',
+                 '-ms-transform' : 'rotate('+ degrees +'deg)',
+                 'transform' : 'rotate('+ degrees +'deg)'});
+};
+
+$('.rotate3').click(function() {
+    rotation += 10;
+    $(this).rotate(rotation);
+});
+counter++;
+}
+
 // prototype to	start drawing on touch using canvas moveTo and lineTo
 $.fn.drawTouch = function() {
 	var start = function(e) {
@@ -444,7 +486,8 @@ function setLine(e){
 		<a id="rect" class="navbtn">Square</a>
 		<a id="circle" class="navbtn">Circle</a>
 		<a id="star" class="navbtn">Star</a>
-		<a id="generate" class="navbtn">Generate a file</a>
+		<a id="house" class="navbtn">House</a>
+		<a id="generate" class="navbtn">Save</a>
 		<div class="title">Draw App FSTC</div>
 	</div>
 	<div id="content"><p style="text-align:center">Loading Canvas...</p></div>
