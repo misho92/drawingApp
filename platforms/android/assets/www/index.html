@@ -138,6 +138,9 @@ $(document).ready(function () {
         if(this.checked){
             ctx.strokeStyle = "#ffffff"
         }
+        else{
+            ctx.strokeStyle = color;
+        }
     });
 
 	// setup a new canvas for drawing wait for device init
@@ -485,14 +488,13 @@ $( function() {
 //setting draw colour
 function update(picker) {
     ctx.beginPath();
-    $('#eraser').click(function() {
-        if(this.checked){
-            ctx.strokeStyle = "#ffffff"
-        }
-        else{
-            ctx.strokeStyle = picker.toRGBString();
-        }
-    });
+    if($('#eraser').is(':checked')){
+        ctx.strokeStyle = "#ffffff"
+    }
+    else{
+        ctx.strokeStyle = picker.toRGBString();
+    }
+    color = picker.toRGBString();
 }
 
 //setting line width
