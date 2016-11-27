@@ -180,6 +180,14 @@ $(document).ready(function () {
 		houseCanvas();
 	});
 
+	$("#text").click(function() {
+	    var position={ my: "center top", at: "center top+25", of: "#content"}
+		$("#popUp" ).dialog({position:position});
+		$("#add").click(function(){
+		    addText()
+		});
+	});
+
 	//screenshot
 	$("#generate").click(function() {
 		navigator.screenshot.save(function(error,res){
@@ -493,6 +501,47 @@ function setLine(e){
 	console.log(e.value);
 }
 
+function addText(){
+    //var canvas = '<div class="rotate1"><svg id="' + counter + '" width="200" height="100"> <circle cx="50" cy="50" r="40" stroke-width="4" fill="yellow" /> </svg></div>';
+	//$("#content").append(canvas);
+	var c = document.getElementById("canvas");
+    var ctx = c.getContext("2d");
+    ctx.font =  document.getElementById("size").value + "px Georgia";
+    ctx.fillText(document.getElementById("string").value, 10, 50);
+    ctx.font = "20px Verdana";
+    $("#popUp" ).dialog('close');
+	switch(counter) {
+		case 1:
+			$( "#1" ).draggable();
+			break;
+		case 2:
+			$( "#2" ).draggable();
+		case 3:
+			$( "#3" ).draggable();
+		case 4:
+			$( "#4" ).draggable();
+		case 5:
+			$( "#5" ).draggable();
+			break;
+	}
+	//rotation
+var rotation = 0;
+
+jQuery.fn.rotate = function(degrees) {
+    $(this).css({'-webkit-transform' : 'rotate('+ degrees +'deg)',
+                 '-moz-transform' : 'rotate('+ degrees +'deg)',
+                 '-ms-transform' : 'rotate('+ degrees +'deg)',
+                 'transform' : 'rotate('+ degrees +'deg)'});
+};
+
+$('.rotate1').click(function() {
+    rotation += 5;
+    $(this).rotate(rotation);
+});
+counter++;
+}
+
+
 
 	</script>
 </head>
@@ -523,9 +572,15 @@ function setLine(e){
 				<option>9</option>
 				<option>10</option>
 			</select>
-			<input type="checkbox" id="eraser"/><font color="white">Eraser</font><br>
+            <a id="text" class="navbtn">Text</a>
+			<input type="checkbox" id="eraser"/><font color="white">Eraser</font>
 		</div>
 	</div>
+    <div id="popUp" title="Select values">
+        Text: <input type="text" id="string"><br>
+        Size: <input type="text" id="size"><br>
+        <button id="add" class="navbtn">Add</button>
+    </div>
 </div>
 </body>
 </html>
